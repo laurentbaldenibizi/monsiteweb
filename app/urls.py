@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app.views import home
+from app.views import home,categories
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home.index, name='home'),
+
+    path('categories/', categories.index, name='categories_index'),
+    path('categories/create', categories.create, name='categories_create'),
+    path('categories/store', categories.store, name='categories_store'),
+    path('categories/edit/<int:id>', categories.edit, name='categories_edit'),
+    path('categories/delete/<int:id>', categories.delete, name='categories_delete'),
 
 
 ]
