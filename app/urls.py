@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app.views import home,categories
+from app.views import home,categories,users
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +27,11 @@ urlpatterns = [
     path('categories/edit/<int:id>', categories.edit, name='categories_edit'),
     path('categories/delete/<int:id>', categories.delete, name='categories_delete'),
 
+path('login/', users.user_login, name='users_login'),
+      path('logout/', users.user_logout, name='logout'),
+       path('users/', users.index, name='users_index'),
+    path('register/', users.register, name='users_register'),
+    path('users/store', users.store, name='users_store'),
+    path('users/delete/<int:id>', users.delete, name='users_delete'),
 
 ]
