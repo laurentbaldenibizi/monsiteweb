@@ -27,67 +27,34 @@
                            <li data-target="#myCarousel" data-slide-to="4"></li>
                         </ol>
                         <!-- Wrapper for slides -->
+
+
+
                         <div class="carousel-inner">
                            <div class="carousel-item active">
                               <div class="container">
                                  <div class="banner_main">
                                     <h1 class="banner_taital">Merci cher visiteur de visitermon site</h1>
-                                    <p class="banner_text">C'est trs gentils de visiter mon site</p>
+                                    <p class="banner_text">C'est tres gentils de visiter mon site</p>
                                     <div class="btn_main">
-                                       <div class="contact_bt active "><a href="#"> contacter moi</a></div>
-                                       <div class="readmore_bt"><a href="#">lire plus</a></div>
                                     </div>
                                  </div>
                               </div>
                            </div>
+                           {% for public in publications %}
                            <div class="carousel-item">
                               <div class="container">
                                  <div class="banner_main">
-                                    <h1 class="banner_taital">>Merci cher visiteur de visitermon site</h1>
-                                    <p class="banner_text">C'est trs gentils de visiter mon site</p>
-                                    <div class="btn_main">
-                                       <div class="contact_bt active "><a href="#">Contacte moi</a></div>
-                                       <div class="readmore_bt"><a href="#">lire plus</a></div>
+                                    <h1 class="banner_taital">>{{ public.titre }}</h1>
+                                    <p class="banner_text">publié par :{{ public.auteur }}</p>
+                                    <div class="btn_main"> 
+                                       <div class="contact_bt active "><a href="{% url 'list_per_post' public.id %}">commentaires</a></div>
+                                       <div class="readmore_bt"><a href="{% url 'commentaire_create' public.id %}">commenter</a></div>
                                     </div>
                                  </div>
                               </div>
                            </div>
-                           <div class="carousel-item">
-                              <div class="container">
-                                 <div class="banner_main">
-                                    <h1 class="banner_taital">Business Agency Profit Your Marketing</h1>
-                                    <p class="banner_text">It is a long established fact that a reader will be distracted by the readable content of a page when</p>
-                                    <div class="btn_main">
-                                       <div class="contact_bt active "><a href="#">Contact Us</a></div>
-                                       <div class="readmore_bt"><a href="#">Read More</a></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="carousel-item">
-                              <div class="container">
-                                 <div class="banner_main">
-                                    <h1 class="banner_taital">Business Agency Profit Your Marketing</h1>
-                                    <p class="banner_text">It is a long established fact that a reader will be distracted by the readable content of a page when</p>
-                                    <div class="btn_main">
-                                       <div class="contact_bt active "><a href="#">Contact Us</a></div>
-                                       <div class="readmore_bt"><a href="#">Read More</a></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="carousel-item">
-                              <div class="container">
-                                 <div class="banner_main">
-                                    <h1 class="banner_taital">Business Agency Profit Your Marketing</h1>
-                                    <p class="banner_text">It is a long established fact that a reader will be distracted by the readable content of a page when</p>
-                                    <div class="btn_main">
-                                       <div class="contact_bt active "><a href="#">Contact Us</a></div>
-                                       <div class="readmore_bt"><a href="#">Read More</a></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+{% endfor %}
                         </div>
                      </div>
                   </div>

@@ -49,10 +49,10 @@
             <tr><td colspan="3"></td>
             <td><h5>publié le {{ public.date }}</h5></td></tr>
 
-            <tr><td><a href="#" class="btn btn-primary m-1">commentaires</a> </td>
+            <tr><td><a href="{% url 'list_per_post' public.id %}" class="btn btn-primary m-1">commentaires</a> </td>
             <td colspan="2"></td>
           <td> <a
-            href="#"
+            href="{% url 'commentaire_create' public.id %}"
             class="btn btn-primary m-1"
             >commenter</a>
             {% if user.is_superuser == 1 %} 

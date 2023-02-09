@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app.views import home,categories,users,publication
+from app.views import home,categories,users,publication,commentaire
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,5 +40,12 @@ path('login/', users.user_login, name='users_login'),
     path('publication/store', publication.store, name='publication_store'),
     path('publication/edit/<int:id>', publication.edit, name='publication_edit'),
     path('publication/delete/<int:id>', publication.delete, name='publication_delete'),
+    path('publication/commentaires/<int:id>', commentaire.list_per_post, name='list_per_post'),
+
+     path('commentaire/', commentaire.index, name='commentaire_index'),
+    path('commentaire/create/<int:id>', commentaire.create, name='commentaire_create'),
+    path('commentaire/store/<int:id>', commentaire.store, name='commentaire_store'),
+    path('commentaire/edit/<int:id>', commentaire.edit, name='commentaire_edit'),
+
 
 ]

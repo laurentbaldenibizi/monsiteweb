@@ -1,0 +1,71 @@
+{% block content %}
+{% load static %}
+{% include 'app/partials/head.html' %}
+{% include 'app/partials/nav.html' %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">commentaires</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      {% comment %} {% if messages %}
+       {% for message in messages %} 
+       <p class="alert alert-success w-100 h-100">{{ message }} </p>
+       {% endfor %}
+      {% endif %} {% endcomment %}
+
+      {% if messages %}
+       {% for message in messages %} 
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-alert mr-1"></i>{{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            commentaires associées au publication 
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" >
+          <thead>
+
+            <tr>
+              
+            
+              <th>nom</th>
+              <th>prenom</th>
+            
+              <th>contenu commenté</th>
+              <th>date de publication</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+           {% for comment in commentaires_post  %} 
+            <tr>
+         
+          
+              <td><h4 style="color: blue">{{ comment.nom }}</h4></td>
+              <td><h4 style="color: blue">{{ comment.prenom }}</h4></td>
+           
+              <td><h2>{{ comment.contenu }}</h2></td>
+              <td><h5 style="color: blue">{{ comment.date }}</h5></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
