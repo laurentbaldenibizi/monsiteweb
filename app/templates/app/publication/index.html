@@ -1,0 +1,89 @@
+{% load static %}
+{% include 'app/partials/head.html' %}
+{% include 'app/partials/nav.html' %}
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">publication</h1>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    {% if user.is_superuser == 1 %} 
+    <div class="card-header py-3">
+      <a href="{% url 'publication_create' %}" class="btn btn-primary"
+        >nouvel actualite</a
+      >
+    </div>
+    {% endif %}
+    <div class="card-body">
+
+
+      {% if messages %}
+       {% for message in messages %} 
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-alert mr-1"></i>{{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            publication
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" style="background-color:default; width: 100%">
+          <tbody>
+           {% for public in publications  %}
+          <tr>
+            <tr><td colspan="4" style="width: 100%"><h1 style="color: blue">{{ public.titre }}</h1></td></tr>
+            <tr><td colspan="4"><h2 style="color: black">{{ public.contenu }}</h2></td></tr>
+            <tr><td colspan="3"></td>
+            <td><h6>publié par: {{ public.auteur }}</h6></td>
+            </tr>
+            <tr><td colspan="3"></td>
+            <td><h6> type d'actu:{{ public.categorie }}</h6> </td></tr>
+            <tr><td colspan="3"></td>
+            <td><h5>publié le {{ public.date }}</h5></td></tr>
+
+            <tr><td><a href="#" class="btn btn-primary m-1">commentaires</a> </td>
+            <td colspan="2"></td>
+          <td> <a
+            href="#"
+            class="btn btn-primary m-1"
+            >commenter</a>
+            {% if user.is_superuser == 1 %} 
+            <a
+            href="{% url 'publication_edit' public.id %}"
+            class="btn btn-primary m-1"
+            >Editer</a>
+            <form
+            action="{% url 'publication_delete' public.id %}"
+            method="post"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              onclick="return confirm('voulez vous vraiment supprimer cette publication ?')"
+              class="btn btn-danger m-1"
+            >
+              supprimer
+            </button>
+          </form>
+        {% endif %}</td></tr>
+        
+        </tr>
+        {% endfor%}
+              </tbody>
+            </table>
+            
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
